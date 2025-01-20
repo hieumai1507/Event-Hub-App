@@ -1,45 +1,64 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import React from "react";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { FontAwesome5, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Explore from "./explore";
+import Events from "./Events/index";
+import { MENU } from "@/constants/menu.constant";
+import Map from "./Map/index";
+import Profile from "./Profile/index";
+const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarActiveTintColor: "#5669ff",
+
+        tabBarInactiveTintColor: "#d5d7dc",
+
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
+        tabBarStyle: {
+          marginTop: 10,
+        },
+      })}
+    >
+      <Tab.Screen
+        name={MENU.EXPLORE}
+        component={Explore}
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="explore" size={size} color={color} />
+          ),
         }}
       />
-      <Tabs.Screen
-        name="explore"
+      <Tab.Screen
+        name={MENU.EVENTS}
+        component={Events}
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="calendar-month" size={size} color={color} />
+          ),
         }}
       />
-    </Tabs>
+      <Tab.Screen
+        name={MENU.MAP}
+        component={Map}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="map-marker-alt" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={MENU.PROFILE}
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
