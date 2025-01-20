@@ -3,8 +3,10 @@ module.exports = {
   content: [
     "./App.tsx",
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/nativewind/dist/**/*.js",
+    "./screens/**/*.{js,ts,jsx,tsx}", // <-- Sửa lỗi ở đây
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
+  presets: [require("nativewind/preset")],
   theme: {
     extend: {},
   },

@@ -1,7 +1,10 @@
-module.exports = {
-  presets: ["babel-preset-expo"],
-  plugins: [
-    // Các plugin bổ sung có thể thêm vào ở đây nếu cần
-    "react-native-reanimated/plugin",
-  ],
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+      "nativewind/babel", // Keep it here as a preset
+    ],
+    plugins: [["react-native-reanimated/plugin"]], // Removed nativewind/babel
+  };
 };
