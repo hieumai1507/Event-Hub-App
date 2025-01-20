@@ -7,19 +7,25 @@ import Events from "./Events/index";
 import { MENU } from "@/constants/menu.constant";
 import Map from "./Map/index";
 import Profile from "./Profile/index";
+import { Platform } from "react-native";
+import { appColors } from "@/constants/appColors";
 const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={() => ({
         tabBarActiveTintColor: "#5669ff",
-
         tabBarInactiveTintColor: "#d5d7dc",
-
         headerShown: false,
         tabBarStyle: {
-          marginTop: 10,
+          height: Platform.OS === "ios" ? 88 : 68,
+          justifyContent: "center",
+          backgroundColor: appColors.white,
+        },
+
+        tabBarIconStyle: {
+          marginTop: 8,
         },
       })}
     >

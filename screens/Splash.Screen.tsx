@@ -11,26 +11,21 @@ import { SpaceComponent } from "@/components";
 import { appColors } from "@/constants/appColors";
 const SplashScreen = () => {
   return (
-    <SafeAreaView>
-      <ImageBackground
-        source={require("../assets/images/splash-img.png")}
-        className="flex-1 justify-center items-center"
-        imageStyle={{ flex: 1 }}
+    <ImageBackground
+      source={require("../assets/images/splash-img.png")}
+      className="flex-1 justify-center items-center"
+      imageStyle={{ flex: 1 }}
+    >
+      <Image
+        source={require("../assets/images/splash-logo.png")}
         style={{
-          top: appInfo.sizes.HEIGHT * 0.45,
+          width: appInfo.sizes.WIDTH * 0.7,
+          resizeMode: "contain",
         }}
-      >
-        <Image
-          source={require("../assets/images/splash-logo.png")}
-          style={{
-            width: appInfo.sizes.WIDTH * 0.7,
-            resizeMode: "contain",
-          }}
-        />
-        <SpaceComponent height={20} />
-        <ActivityIndicator color={appColors.gray} size={22} />
-      </ImageBackground>
-    </SafeAreaView>
+      />
+      <SpaceComponent height={20} />
+      <ActivityIndicator color={appColors.gray} size={22} />
+    </ImageBackground>
   );
 };
 

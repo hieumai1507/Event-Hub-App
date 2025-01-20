@@ -1,51 +1,63 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
 import "../global.css";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { SplashScreen } from "@/screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import TabLayout from "./(tabs)/_layout";
 import Login from "./(routes)/auth/Login";
-import { View } from "react-native";
+import OnBoarding from "./(routes)/auth/OnBoarding";
 const Stack = createNativeStackNavigator();
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [isShowSplash, setIsShowSplash] = useState(true);
+
+  const [accessToken, setAccessToken] = useState("");
+  const { getItem, setItem } = useAsyncStorage("assetToken");
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsShowSplash(false);
     }, 1500);
     return () => clearTimeout(timeout);
   }, []);
+  // useEffect(() => {
+  //   checkLogin();
+  // }, []);
+  // const checkLogin = async () => {
+  //   const token = await getItem();
+  //   console.log(token);
+  //   token && setAccessToken(token);
+  // };
 
   function AuthLayout() {
     return (
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-        </Stack.Navigator>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="OnBoarding" component={OnBoarding} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
     );
   }
 
   return (
-    <View>
-      <StatusBar style="dark" backgroundColor="transparent" />
-      {isShowSplash ? <SplashScreen /> : <AuthLayout />}
-    </View>
+    <>
+      <StatusBar
+        style="dark"
+        backgroundColor="transparent"
+        translucent={true}
+      />
+      {isShowSplash ? (
+        <SplashScreen />
+      ) : accessToken ? (
+        <TabLayout />
+      ) : (
+        <AuthLayout />
+      )}
+    </>
   );
 }
