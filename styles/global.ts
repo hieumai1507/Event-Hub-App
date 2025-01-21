@@ -1,3 +1,4 @@
+import { appInfo } from "./../constants/appInfos";
 import { appColors } from "@/constants/appColors";
 import fonts from "@/constants/fonts";
 import { StyleSheet } from "react-native";
@@ -20,5 +21,14 @@ export const globalStyles = StyleSheet.create({
     paddingVertical: 16,
     minHeight: 56,
     flexDirection: "row",
+  },
+  section: {
+    paddingHorizontal: 16,
+    paddingBottom: 20,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });

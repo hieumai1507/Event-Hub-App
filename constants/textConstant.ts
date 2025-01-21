@@ -6,4 +6,9 @@ export const MENU = {
 } as const;
 export const COMMON = {
   LOGIN: "LOGIN",
+  SIGNIN: "Sign in",
+  SIGNUP: "Sign up",
+  REMEBERME: "Remember me",
+  FORGOTPASS: "Forgot Password?",
+  GOOGLE: "Login With Google",
 } as const;
