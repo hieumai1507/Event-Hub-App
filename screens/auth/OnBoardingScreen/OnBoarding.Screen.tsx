@@ -1,19 +1,11 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  TextComponent,
-  StyleSheet,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import Swiper from "react-native-swiper";
 import "@/styles/global";
-import { appInfo } from "@/constants/appInfos";
 import { appColors } from "@/constants/appColors";
 import { globalStyles } from "@/styles/global";
 import { useNavigation } from "expo-router";
+import { TextComponent } from "@/components";
 const OnBoardingScreen = () => {
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
@@ -40,14 +32,14 @@ const OnBoardingScreen = () => {
       </Swiper>
       <View className="px-4 py-2 absolute bottom-5 right-5 left-5 flex-row justify-between items-center">
         <TouchableOpacity onPress={() => navigation.replace("Login")}>
-          <Text style={[styles.text, { color: appColors.gray2 }]}>Skip</Text>
+          <TextComponent text="Skip" color={appColors.gray2} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
             index < 2 ? setIndex(index + 1) : navigation.replace("Login")
           }
         >
-          <Text style={[styles.text, { color: appColors.white }]}>Next</Text>
+          <TextComponent text="Next" color={appColors.white} />
         </TouchableOpacity>
       </View>
     </View>
