@@ -1,8 +1,8 @@
 export default {
-  AirbnbCereal_W_Bd: "AirbnbCereal_W_Bd",
-  AirbnbCereal_W_Bk: "AirbnbCereal_W_Bk",
-  AirbnbCereal_W_Blk: "AirbnbCereal_W_Blk",
-  AirbnbCereal_W_Lt: "AirbnbCereal_W_Lt",
-  AirbnbCereal_W_Md: "AirbnbCereal_W_Md",
-  AirbnbCereal_W_XBd: "AirbnbCereal_W_XBd",
+  "Bd": "AirbnbCereal_W_Bd",
+  "Bk": "AirbnbCereal_W_Bk",
+  "Blk": "AirbnbCereal_W_Blk",
+  "Lt": "AirbnbCereal_W_Lt",
+  "Md": "AirbnbCereal_W_Md",
+  "XBd": "AirbnbCereal_W_XBd",
 };

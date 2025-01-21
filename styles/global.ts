@@ -7,8 +7,18 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: appColors.white,
   },
   text: {
-    fontFamily: fonts.AirbnbCereal_W_Lt,
+    fontFamily: fonts.Lt,
     fontSize: 14,
     color: appColors.text,
+  },
+  button: {
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: appColors.white,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    minHeight: 56,
+    flexDirection: "row",
   },
 });

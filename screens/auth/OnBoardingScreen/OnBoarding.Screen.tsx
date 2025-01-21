@@ -6,6 +6,7 @@ import { appColors } from "@/constants/appColors";
 import { globalStyles } from "@/styles/global";
 import { useNavigation } from "expo-router";
 import { TextComponent } from "@/components";
+import fonts from "@/constants/fonts";
 const OnBoardingScreen = () => {
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
@@ -32,14 +33,14 @@ const OnBoardingScreen = () => {
       </Swiper>
       <View className="px-4 py-2 absolute bottom-5 right-5 left-5 flex-row justify-between items-center">
         <TouchableOpacity onPress={() => navigation.replace("Login")}>
-          <TextComponent text="Skip" color={appColors.gray2} />
+          <TextComponent text="Skip" color={appColors.gray2} font={fonts.Md} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
             index < 2 ? setIndex(index + 1) : navigation.replace("Login")
           }
         >
-          <TextComponent text="Next" color={appColors.white} />
+          <TextComponent text="Next" color={appColors.white} font={fonts.Md} />
         </TouchableOpacity>
       </View>
     </View>

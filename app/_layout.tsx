@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
+import * as Font from "expo-font";
 import "../global.css";
 import { SplashScreen } from "@/screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -12,6 +13,14 @@ import OnBoarding from "./(routes)/auth/OnBoarding";
 const Stack = createNativeStackNavigator();
 
 export default function RootLayout() {
+  const [loaded, error] = Font.useFonts({
+    "AirbnbCereal_W_Bd": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
+    "AirbnbCereal_W_Bk": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    "AirbnbCereal_W_Blk": require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
+    "AirbnbCereal_W_Lt": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
+    "AirbnbCereal_W_Md": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
+    "AirbnbCereal_W_XBd": require("../assets/fonts/AirbnbCereal_W_XBd.otf"),
+  });
   const [isShowSplash, setIsShowSplash] = useState(true);
 
   const [accessToken, setAccessToken] = useState("");
@@ -30,7 +39,15 @@ export default function RootLayout() {
   //   console.log(token);
   //   token && setAccessToken(token);
   // };
+  useEffect(() => {
+    if (loaded || error) {
+      <SplashScreen />;
+    }
+  }, [loaded, error]);
 
+  if (!loaded && !error) {
+    return null;
+  }
   function AuthLayout() {
     return (
       <Stack.Navigator

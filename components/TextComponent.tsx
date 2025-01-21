@@ -22,8 +22,7 @@ const TextComponent = (props: Props) => {
           color: color ?? appColors.text,
           flex: flex ?? 0,
           fontSize: fontSize ?? title ? 24 : 14,
-          fontFamily:
-            font ?? title ? fonts.AirbnbCereal_W_XBd : fonts.AirbnbCereal_W_Lt,
+          fontFamily: font ?? title ? fonts.Md : fonts.Lt,
         },
         styles,
       ]}

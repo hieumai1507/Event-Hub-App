@@ -4,3 +4,6 @@ export const MENU = {
   MAP: "Map",
   PROFILE: "Profile",
 } as const;
+export const COMMON = {
+  LOGIN: "LOGIN",
+} as const;

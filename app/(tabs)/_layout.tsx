@@ -4,7 +4,7 @@ import { FontAwesome5, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Explore from "./explore";
 import Events from "./Events/index";
-import { MENU } from "@/constants/menu.constant";
+import { MENU } from "@/constants/textConstant";
 import Map from "./Map/index";
 import Profile from "./Profile/index";
 import { Platform } from "react-native";

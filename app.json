@@ -32,18 +32,11 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      ["expo-font"]
     ],
     "experiments": {
       "typedRoutes": true
     }
-  },
-  "assets": [
-    "./assets/fonts/AirbnbCereal_W_Bd.otf",
-    "./assets/fonts/AirbnbCereal_W_Bk.otf",
-    "./assets/fonts/AirbnbCereal_W_Blk.otf",
-    "./assets/fonts/AirbnbCereal_W_Lt.otf",
-    "./assets/fonts/AirbnbCereal_W_Md.otf",
-    "./assets/fonts/AirbnbCereal_W_XBd.otf"
-  ]
+  }
 }
