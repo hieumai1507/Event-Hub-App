@@ -11,4 +11,6 @@ export const COMMON = {
   REMEBERME: "Remember me",
   FORGOTPASS: "Forgot Password?",
   GOOGLE: "Login With Google",
+  FACEBOOK: "Login With Facebook",
+  HAVEANACCOUNT: "Already have an account",
 } as const;

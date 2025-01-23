@@ -10,16 +10,19 @@ import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import TabLayout from "./(tabs)/_layout";
 import Login from "./(routes)/auth/Login";
 import OnBoarding from "./(routes)/auth/OnBoarding";
+import SignUp from "./(routes)/auth/SignUp";
+import Verification from "./(routes)/auth/Verification";
+import ForgotPassword from "./(routes)/auth/ForgotPassword";
 const Stack = createNativeStackNavigator();
 
 export default function RootLayout() {
   const [loaded, error] = Font.useFonts({
-    "AirbnbCereal_W_Bd": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
-    "AirbnbCereal_W_Bk": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
-    "AirbnbCereal_W_Blk": require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
-    "AirbnbCereal_W_Lt": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
-    "AirbnbCereal_W_Md": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
-    "AirbnbCereal_W_XBd": require("../assets/fonts/AirbnbCereal_W_XBd.otf"),
+    AirbnbCereal_W_Bd: require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
+    AirbnbCereal_W_Bk: require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    AirbnbCereal_W_Blk: require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
+    AirbnbCereal_W_Lt: require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
+    AirbnbCereal_W_Md: require("../assets/fonts/AirbnbCereal_W_Md.otf"),
+    AirbnbCereal_W_XBd: require("../assets/fonts/AirbnbCereal_W_XBd.otf"),
   });
   const [isShowSplash, setIsShowSplash] = useState(true);
 
@@ -57,6 +60,9 @@ export default function RootLayout() {
       >
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Verification" component={Verification} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       </Stack.Navigator>
     );
   }

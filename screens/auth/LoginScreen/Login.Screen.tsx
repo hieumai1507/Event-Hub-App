@@ -1,15 +1,4 @@
 import {
-  Button,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Switch,
-  Text,
-  View,
-} from "react-native";
-import React, { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
   ButtonComponent,
   ContainerComponent,
   InputComponent,
@@ -18,16 +7,27 @@ import {
   SpaceComponent,
   TextComponent,
 } from "@/components";
-import { COMMON } from "@/constants/textConstant";
-import { globalStyles } from "@/styles/global";
-import { Lock, Sms } from "iconsax-react-native";
 import { appColors } from "@/constants/appColors";
-import fonts from "@/constants/fonts";
+import { COMMON } from "@/constants/textConstant";
+import { useNavigation } from "expo-router";
+import { Lock, Sms } from "iconsax-react-native";
+import React, { useState } from "react";
+import { Image, Switch } from "react-native";
 import SocialLogin from "../components/SocialLogin";
+import authenticationAPI from "@/apis/authApi";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(true);
+  const navigation = useNavigation();
+  const handleLogin = async () => {
+    try {
+      const res = await authenticationAPI.HandleAuthentication("/hello");
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ContainerComponent isScroll isImageBackground>
       {/* Logo Section */}
@@ -85,7 +85,7 @@ const LoginScreen = () => {
           </RowComponents>
           <ButtonComponent
             text={COMMON.FORGOTPASS}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("ForgotPassword")}
             type="text"
           />
         </RowComponents>
@@ -93,7 +93,7 @@ const LoginScreen = () => {
       <SpaceComponent height={16} />
       {/* SIGN IN Button */}
       <SectionComponent>
-        <ButtonComponent text="SIGN IN" type="primary" />
+        <ButtonComponent text="SIGN IN" type="primary" onPress={handleLogin} />
       </SectionComponent>
       {/* Social Login */}
       <SocialLogin />
@@ -101,7 +101,13 @@ const LoginScreen = () => {
       <SectionComponent>
         <RowComponents justify="center">
           <TextComponent text="Don't have an account" />
-          <ButtonComponent text={COMMON.SIGNUP} type="link" />
+          <ButtonComponent
+            text={COMMON.SIGNUP}
+            type="link"
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          />
         </RowComponents>
       </SectionComponent>
     </ContainerComponent>

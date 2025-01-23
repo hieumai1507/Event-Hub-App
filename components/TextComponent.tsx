@@ -1,8 +1,8 @@
-import { View, Text, StyleProp, TextStyle, Platform } from "react-native";
-import React from "react";
 import { appColors } from "@/constants/appColors";
 import fonts from "@/constants/fonts";
 import { globalStyles } from "@/styles/global";
+import React from "react";
+import { Platform, StyleProp, Text, TextStyle } from "react-native";
 interface Props {
   text: string;
   color?: string;
@@ -23,7 +23,7 @@ const TextComponent = (props: Props) => {
           color: color ?? appColors.text,
           flex: flex ?? 0,
           fontSize: fontSize ? fontSize : title ? 24 : fontSizeDefault,
-          fontFamily: font ? font : fonts.Lt,
+          fontFamily: font ? font : title ? fonts.Md : fonts.Lt,
         },
         styles,
       ]}
