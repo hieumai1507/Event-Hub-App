@@ -28,7 +28,6 @@ const initValue = {
 };
 const SignUpScreen = () => {
   const [values, setValues] = useState(initValue);
-  const [isRemember, setIsRemember] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const navigation = useNavigation();

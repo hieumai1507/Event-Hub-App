@@ -12,7 +12,7 @@ const AppRouter = () => {
   const auth = useSelector(authSelector);
   const dispatch = useDispatch();
   useEffect(() => {
-    checkLogin;
+    checkLogin();
     const timeout = setTimeout(() => {
       setIsShowSplash(false);
     }, 1500);

@@ -12,18 +12,40 @@ import { COMMON } from "@/constants/textConstant";
 import { useNavigation } from "expo-router";
 import { Lock, Sms } from "iconsax-react-native";
 import React, { useState } from "react";
-import { Image, Switch } from "react-native";
+import { Alert, Image, Switch } from "react-native";
 import SocialLogin from "../components/SocialLogin";
 import authenticationAPI from "@/apis/authApi";
+import { Validate } from "@/utils/validate";
+import { useDispatch } from "react-redux";
+import { addAuth } from "@/stores/reducers/authReducer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(true);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const handleLogin = async () => {
     try {
-      const res = await authenticationAPI.HandleAuthentication("/hello");
-      console.log(res);
+      const emailValidation = Validate.email(email);
+      if (emailValidation) {
+        const res = await authenticationAPI.HandleAuthentication(
+          "/login",
+          {
+            email,
+            password,
+          },
+          "post"
+        );
+        console.log(res);
+        dispatch(addAuth(res.data));
+        await AsyncStorage.setItem(
+          "auth",
+          isRemember ? JSON.stringify(res.data) : email
+        );
+      } else {
+        Alert.alert("Email is not correct");
+      }
     } catch (error) {
       console.log(error);
     }
